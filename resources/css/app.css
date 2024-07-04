@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --bg-primaryDark: #14b8a6;
+    --bg-primaryLight: #2dd4bf;
+}
+
+.bg-sidebar {
+    background: var(--bg-primaryDark)
+}
+
+.active-nav-link {
+    background: var(--bg-primaryLight);
+}
+
+.nav-item:hover {
+    background: var(--bg-primaryLight);
+    border-radius: 0.375rem;
+}
+.nav-item-sidebar:hover {
+    background: var(--bg-primaryLight);
+}
+
+.account-link:hover {
+    background: var(--bg-primaryLight);
+}
