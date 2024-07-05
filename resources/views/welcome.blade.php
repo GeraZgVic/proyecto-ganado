@@ -15,6 +15,7 @@
         <h2 class="font-bold text-4xl">Sistema Integral de Ganadería</h2>
         <p class="text-2xl">Presentación</p>
         <p class="text-red-600 text-xl text-center">Prueba de cambios para el servidor desde Github :D</p>
+        <p class="text-blue-600 text-xl text-center">Segunda prueba de cambios para el servidor desde Github :D</p>
     </div>
 
 </body>
