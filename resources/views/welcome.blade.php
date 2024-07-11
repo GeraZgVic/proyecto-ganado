@@ -11,11 +11,9 @@
 <body class="selection:bg-black selection:text-white">
     <x-navbar />
 
-    <div class="flex flex-col justify-center items-center space-y-6">
+    <div class="flex flex-col justify-center items-center space-y-6 h-screen">
         <h2 class="font-bold text-4xl">Sistema Integral de Ganadería</h2>
-        <p class="text-2xl">Presentación</p>
-        <p class="text-red-600 text-xl text-center">Prueba de cambios para el servidor desde Github :D</p>
-        <p class="text-blue-600 text-xl text-center">Segunda prueba de cambios para el servidor desde Github :D</p>
+        <p class="text-2xl">Ar Site - Sistema en Construcción</p>
     </div>
 
 </body>

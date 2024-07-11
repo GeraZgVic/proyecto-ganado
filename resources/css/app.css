@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-    --bg-primaryDark: #14b8a6;
+    --bg-primaryDark: #0d9488;
     --bg-primaryLight: #2dd4bf;
 }
 
@@ -26,3 +26,70 @@
 .account-link:hover {
     background: var(--bg-primaryLight);
 }
+
+/* Estilos de notificación */
+.alert {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #fff; /* White background */
+    color: #38a169; /* Green text color */
+    padding: 16px;
+    border-left: 4px solid #38a169; /* Green left border */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    display: none;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ensure space between icon, text and progress bar */
+    min-width: 300px;
+}
+
+.alert-icon {
+    margin-right: 12px;
+}
+
+.alert p {
+    margin: 0;
+    flex-grow: 1;
+}
+
+.alert-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: rgba(56, 161, 105, 0.3);
+    border-radius: 0 0 3px 3px;
+}
+
+.alert-active {
+    display: flex;
+    animation: fadeOut 5s linear forwards;
+}
+
+.alert-active .alert-progress {
+    animation: runProgress 4s linear forwards 0.5s;
+}
+
+@keyframes fadeOut {
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; transform: translateY(0px); }
+    99% { opacity: 0; transform: translateY(-30px); }
+    100% { opacity: 0; }
+}
+
+@keyframes runProgress {
+    0% { width: 0%; background-color: rgba(56, 161, 105, 0.3); }
+    100% { width: 100%; background-color: rgba(56, 161, 105, 1); }
+}
+
+.alert-hoverpause:hover,
+.alert-hoverpause:hover .alert-progress {
+    animation-play-state: paused;
+}
+
