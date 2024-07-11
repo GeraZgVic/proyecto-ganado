@@ -37,12 +37,12 @@
             </a>
             <div role="menu" x-show="open" class="mt-2 space-y-2 px-7" aria-label="Dashboards">
                 <a href="{{route('propietarios.index')}}" role="menuitem"
-                    class="block p-2 text-sm text-gray-100 transition-colors duration-200 rounded-md hover:text-emerald-200 {{Route::currentRouteName() == 'propietarios.index' ? 'text-emerald-200' : ''}}">
-                    Ver Propietarios
+                    class="block p-2 text-sm text-gray-100 transition-colors duration-200 rounded-md hover:text-emerald-200">
+                    <span class="{{Route::currentRouteName() == 'propietarios.index' ? 'text-emerald-200' : ''}}">Ver Propietarios</span>
                 </a>
                 <a href="{{route('upp.index')}}" role="menuitem"
-                    class="block p-2 text-sm text-gray-100 transition-colors duration-200 rounded-md hover:text-emerald-200 {{Route::currentRouteName() == 'upp.index' ? 'text-emerald-200' : ''}}">
-                    Agregar UPP
+                    class="block p-2 text-sm text-gray-100 transition-colors duration-200 rounded-md hover:text-emerald-200">
+                    <span class="{{Route::currentRouteName() == 'upp.index' ? 'text-emerald-200' : ''}}">Agregar UPP</span>
                 </a>
             </div>
         </div>
