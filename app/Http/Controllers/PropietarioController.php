@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Propietario;
+use App\Models\Upp;
 use Illuminate\Http\Request;
 
 class PropietarioController extends Controller
@@ -19,5 +20,10 @@ class PropietarioController extends Controller
     public function destroy(Propietario $propietario)
     {
         $propietario->delete();
+    }
+    
+    public function destroyUpp(Upp $upp)
+    {
+        $upp->delete();
     }
 }

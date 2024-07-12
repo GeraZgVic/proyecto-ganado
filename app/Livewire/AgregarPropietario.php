@@ -4,13 +4,14 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Propietario;
+use App\Models\Upp;
 
 class AgregarPropietario extends Component
 {
     public $nombre;
     public $apellido_paterno;
     public $apellido_materno;
-    public $upp;
+    public $upp_id;
 
 
     public function save() 
@@ -19,7 +20,8 @@ class AgregarPropietario extends Component
             'nombre' => 'required',
             'apellido_paterno' => 'required',
             'apellido_materno' => 'required',
-            'upp' => 'required|unique:propietarios,upp'
+            'upp_id' => 'required'
+            // 'upp_id' => 'required|unique:propietarios,upp_id'
         ]);
 
         Propietario::create($validated);
@@ -30,6 +32,10 @@ class AgregarPropietario extends Component
 
     public function render()
     {
-        return view('livewire.agregar-propietario');
+        $upps = Upp::all();
+
+        return view('livewire.agregar-propietario', [
+            'upps' => $upps
+        ]);
     }
 }

@@ -4,13 +4,14 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Propietario;
+use App\Models\Upp;
 
 class EditarPropietario extends Component
 {
     public $nombre;
     public $apellido_paterno;
     public $apellido_materno;
-    public $upp;
+    public $upp_id;
     public $id;
     public $propietarios;
 
@@ -21,7 +22,7 @@ class EditarPropietario extends Component
         $this->nombre = $this->propietarios->nombre;
         $this->apellido_materno = $this->propietarios->apellido_materno;
         $this->apellido_paterno = $this->propietarios->apellido_paterno;
-        $this->upp = $this->propietarios->upp;
+        $this->upp_id = $this->propietarios->upp_id;
         
     }
     public function update()
@@ -30,7 +31,7 @@ class EditarPropietario extends Component
             'nombre' => 'required',
             'apellido_paterno' => 'required',
             'apellido_materno' => 'required',
-            'upp' => 'required'
+            'upp_id' => 'required'
         ]);
 
         $this->propietarios->update($validated);
@@ -40,6 +41,8 @@ class EditarPropietario extends Component
 
     public function render()
     {
-        return view('livewire.editar-propietario');
+        return view('livewire.editar-propietario', [
+            'upps' => $upps = Upp::all()
+        ]);
     }
 }

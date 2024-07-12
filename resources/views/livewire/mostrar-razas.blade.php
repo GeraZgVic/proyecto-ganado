@@ -38,7 +38,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="2" class="px-6 py-4 text-center text-gray-400">
+                        <td colspan="2" class="px-6 py-4 text-right text-gray-400">
                             No se encontró resultados...
                         </td>
                     </tr>

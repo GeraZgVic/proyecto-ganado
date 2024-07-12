@@ -12,7 +12,7 @@ class MostrarPropietarios extends Component
     
     public function render()
     {
-        $propietarios = Propietario::orderBy('created_at', 'desc')->paginate(2);
+        $propietarios = Propietario::orderBy('created_at', 'desc')->paginate(10);
 
         return view('livewire.mostrar-propietarios', [
             'propietarios' => $propietarios

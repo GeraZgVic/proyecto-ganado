@@ -13,7 +13,7 @@
         <div x-show="modalIsOpen" x-transition:enter="transition ease-out duration-200 delay-100 motion-reduce:transition-opacity" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" class="flex flex-col gap-4 overflow-hidden rounded-xl border border-slate-300 bg-white text-slate-700 w-full max-w-xl">                 
             <!-- Dialog Header -->
             <div class="flex items-center justify-between border-b border-slate-300 bg-slate-100/60 p-4">
-                <h3 id="defaultModalTitle" class="font-semibold tracking-wide text-black">Editar raza</h3>
+                <h3 id="defaultModalTitle" class="font-semibold tracking-wide text-black">Editar Clave UPP</h3>
                 <button @click="modalIsOpen = false" aria-label="close modal">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" stroke="currentColor" fill="none" stroke-width="1.4" class="w-5 h-5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
@@ -22,12 +22,12 @@
             </div>
             <form wire:submit='update' class="p-4">
                 <div>
-                    <label for="nombre" class="block text-sm font-medium mb-2 text-start">Nombre de la raza</label>
-                    <input wire:model="nombre" id="nombre"
+                    <label for="clave_upp" class="block text-sm font-medium mb-2 text-start">Clave UPP</label>
+                    <input wire:model="clave_upp" id="clave_upp"
                         wire:dirty.class="border-green-500 focus:border-green-500"
                         class="w-full border border-gray-100 rounded-md shadow-sm text-sm py-2 px-3 focus:outline-none focus:ring focus:ring-green-200"
-                        type="text" placeholder="Ingrese el nombre de la raza">
-                    <x-input-error :messages="$errors->get('nombre')" class="mt-2" />
+                        type="text" placeholder="Ingrese el clave_upp de la raza">
+                    <x-input-error :messages="$errors->get('clave_upp')" class="mt-2" />
                 </div>
 
                 <div class="flex items-center justify-end mt-4">

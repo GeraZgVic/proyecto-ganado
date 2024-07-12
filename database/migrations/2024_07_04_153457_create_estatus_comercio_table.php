@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('estatus_comercio', function (Blueprint $table) {
+            // Puro o Comercial
             $table->id();
             $table->string('tipo_ganado');
             $table->timestamps();

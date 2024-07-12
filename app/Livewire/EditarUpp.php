@@ -2,42 +2,43 @@
 
 namespace App\Livewire;
 
-use App\Models\Razas;
+use App\Models\Upp;
 use Livewire\Component;
 
-class EditarRaza extends Component
+class EditarUpp extends Component
 {
-    public $nombre;
+
+    public $clave_upp;
     public $id;
-    public $raza;
+    public $upp;
 
 
     // Obtener valores de bd - Similar a __construct()
     public function mount()
     {
-        $this->raza = Razas::find($this->id);
+        $this->upp = Upp::find($this->id);
         // Vincular nombre de bd con nombre del form
-        $this->nombre = $this->raza->nombre;
+        $this->clave_upp = $this->upp->clave_upp;
     }
 
     public function update()
     {
         // Validar campo
         $validated = $this->validate([
-            'nombre' => 'required'
+            'clave_upp' => 'required|min:12|max:12'
         ]);
         
         // Actualizar registro
-        $this->raza->update($validated);
+        $this->upp->update($validated);
 
         // Redireccionar
-        return redirect()->route('razas.index')
+        return redirect()->route('upp.index')
         ->with('success', '¡Actualizado correctamente!');
 
     }
 
     public function render()
     {
-        return view('livewire.editar-raza');
+        return view('livewire.editar-upp');
     }
 }

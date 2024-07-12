@@ -55,11 +55,18 @@
                     </div>
                     <div>
                         <label for="upp" class="block text-sm font-medium mb-2 text-start">Unidad de producción pecuaria (UPP)</label>
-                        <input wire:model="upp" id="upp"
-                            wire:dirty.class="border-green-500 focus:border-green-500"
-                            class="w-full border border-gray-100 rounded-md shadow-sm text-sm py-2 px-3 focus:outline-none focus:ring focus:ring-green-200"
-                            type="text" placeholder="Ingrese el upp">
-                        <x-input-error :messages="$errors->get('upp')" class="mt-2" />
+                        <select 
+                            wire:model='upp_id' 
+                            id="upp" wire:dirty.class='border-green-500 focus:border-green-500'
+                            class="w-full border border-gray-100 rounded-md shadow-sm text-sm py-2 
+                            px-3 focus:outline-none focus:ring focus:ring-green-200">
+                            <option>Seleccione el UPP</option>
+                            @foreach ($upps as $upp)
+                                <option value="{{$upp->id}}">{{$upp->clave_upp}}</option>
+                            @endforeach
+                        </select>
+                        
+                        <x-input-error :messages="$errors->get('upp_id')" class="mt-2" />
                     </div>
 
                 </div>

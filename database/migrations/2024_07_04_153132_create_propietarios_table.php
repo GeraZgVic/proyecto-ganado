@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('propietarios', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('upp_id')->nullable()->constrained()->onDelete('set null'); // Crear la columna como nullable y añadir la restricción de la llave foránea en la misma línea
             $table->string('nombre');
             $table->string('apellido_materno')->nullable();
             $table->string('apellido_paterno')->nullable();
-            $table->string('upp')->unique();
             $table->timestamps();
         });
     }

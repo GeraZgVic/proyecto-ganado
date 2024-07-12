@@ -13,7 +13,7 @@ class MostrarRazas extends Component
     public function render()
     {
 
-        $razas = Razas::orderBy('created_at', 'desc')->paginate(6);
+        $razas = Razas::orderBy('created_at', 'desc')->paginate(10);
         
         return view('livewire.mostrar-razas', compact('razas'));
     }

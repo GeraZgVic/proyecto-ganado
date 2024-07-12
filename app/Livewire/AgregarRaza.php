@@ -13,7 +13,7 @@ class AgregarRaza extends Component
     public function save()
     {
         $validated = $this->validate([
-            'nombre' => 'required|min:2'
+            'nombre' => 'required'
         ]);
 
         // Crear registro

@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tipo_registro', function (Blueprint $table) {
-            // Puro o MESTIZO
+        Schema::create('upps', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->string('clave_upp')->unique();
             $table->timestamps();
         });
     }
@@ -24,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tipo_registro');
+        Schema::dropIfExists('upps');
     }
 };

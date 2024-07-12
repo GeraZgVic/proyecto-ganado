@@ -1,14 +1,12 @@
 <div>
     <x-alerta />
-    <div class="relative overflow-x-auto">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 ">
+
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                 <tr>
                     <th scope="col" class="px-6 py-3">
-                        Nombre
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        UPP
+                        upp
                     </th>
                     <th scope="col" class="px-12 py-3 text-right">
                         Acciones
@@ -16,19 +14,16 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse ($propietarios as $propietario)
-                    <tr class="bg-white border-b ">
+                @forelse ($upps as $upp)
+                    <tr class="bg-white border-b hover:bg-gray-50" wire:key="{{ $upp->id }}">
                         <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                            {{ $propietario->nombre }} {{ $propietario->apellido_paterno }}
-                            {{ $propietario->apellido_materno }}
+                            {{ $upp->clave_upp }}
                         </td>
-                        <td class="px-6 py-4">
-                            {{ $propietario->upp ? $propietario->upp->clave_upp : 'Sin clave upp' }}
-                        </td>
-                        <td class="px-6 py-4 flex justify-end gap-x-2">
-                            <livewire:editar-propietario :id="$propietario->id" :key="$propietario->id" />
+                        <td class="px-6 py-4 text-right flex justify-end gap-2">
+                            {{-- Editar --}}
+                            <livewire:editar-upp id="{{ $upp->id }}" :key="$upp->id" />
                             {{-- Eliminar --}}
-                            <button type="button" onclick="confirmDelete({{ $propietario->id }})"
+                            <button type="button" onclick="confirmDelete({{ $upp->id }})"
                                 class="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white focus:ring-4 focus:outline-none focus:ring-pink-200">
                                 <span
                                     class="relative px-4 py-2 transition-all ease-in duration-75 bg-white rounded-md group-hover:bg-opacity-0">
@@ -40,21 +35,23 @@
                                 </span>
                             </button>
                         </td>
-                    @empty
+                    </tr>
+                @empty
                     <tr>
-                        <td colspan="2" class="px-6 py-4 text-right text-gray-400">
+                        <td colspan="2" class="px-6 py-4 text-center text-gray-400">
                             No se encontró resultados...
                         </td>
                     </tr>
                 @endforelse
-                </tr>
             </tbody>
         </table>
     </div>
+
     <div class="mt-4">
-        {{ $propietarios->links() }}
+        {{ $upps->links() }}
     </div>
 </div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -71,14 +68,14 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 // Si el usuario confirma, envía una solicitud Delete al controlador
-                fetch('/propietario/delete/' + id, {
+                fetch('/upp/delete/' + id, {
                     method: 'DELETE',
                     headers: {
                         'X-CSRF-TOKEN': '{{ csrf_token() }}'
                     }
                 }).then(response => {
                     // Redirige a la página después de la eliminación
-                    window.location.href = '/propietarios';
+                    window.location.href = '/upp';
 
                 }).catch(error => {
                     console.error('Error al eliminar el registro:', error)
@@ -88,14 +85,12 @@
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-    const alert = document.querySelector('.alert');
-    if (alert) {
-        alert.classList.add('alert-active');
-        setTimeout(() => {
-            alert.classList.remove('alert-active');
-        }, 5000); // Duración de la animación en milisegundos
-    }
-});
-
+        const alert = document.querySelector('.alert');
+        if (alert) {
+            alert.classList.add('alert-active');
+            setTimeout(() => {
+                alert.classList.remove('alert-active');
+            }, 5000); // Duración de la animación en milisegundos
+        }
+    });
 </script>
-
