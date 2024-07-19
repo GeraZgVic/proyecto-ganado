@@ -13,7 +13,7 @@ class MostrarUpp extends Component
     public function render()
     {
         return view('livewire.mostrar-upp', [
-            'upps' => $upps = Upp::orderBy('created_at', 'desc')->paginate(2)
+            'upps' => $upps = Upp::orderBy('created_at', 'desc')->paginate(10)
         ]);
     }
 }

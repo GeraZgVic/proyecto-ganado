@@ -4,8 +4,12 @@
 
 /* Propiedades Personalizadas */
 :root {
+    /* Con teal */
     --bg-primaryDark: #0d9488;
     --bg-primaryLight: #2dd4bf;
+    /* Con Slate */
+     --bg-primaryDark: #1e293b;
+    --bg-primaryLight: #334155;
 }
 
 .bg-sidebar {
@@ -94,3 +98,11 @@
     animation-play-state: paused;
 }
 
+
+html {
+    overflow-y: auto;
+    scrollbar-color: #475569 #64748b;
+    scrollbar-width: auto;
+    scroll-behavior: smooth;
+  }
+  

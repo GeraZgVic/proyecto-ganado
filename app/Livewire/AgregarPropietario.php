@@ -21,7 +21,6 @@ class AgregarPropietario extends Component
             'apellido_paterno' => 'required',
             'apellido_materno' => 'required',
             'upp_id' => 'required'
-            // 'upp_id' => 'required|unique:propietarios,upp_id'
         ]);
 
         Propietario::create($validated);

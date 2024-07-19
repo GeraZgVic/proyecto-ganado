@@ -13,9 +13,8 @@ class AgregarRaza extends Component
     public function save()
     {
         $validated = $this->validate([
-            'nombre' => 'required'
+            'nombre' => 'required|unique:razas,nombre'
         ]);
-
         // Crear registro
         Razas::create($validated);
 

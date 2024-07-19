@@ -5,16 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Razas extends Model
+class EstatusComercio extends Model
 {
+    protected $table = 'estatus_comercio';
+    
     protected $fillable = [
-        'nombre'
+        'tipo_ganado'
     ];
 
     use HasFactory;
 
+
     public function bovino()
     {
-        return $this->hasOne(GanadoBovino::class, 'raza_id', 'id');
+        return $this->hasOne(GanadoBovino::class, 'estatus_comercio_id', 'id');
     }
 }

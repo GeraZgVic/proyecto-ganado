@@ -11,22 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ganado_bovino', function (Blueprint $table) {
+        Schema::create('ganado_bovinos', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_interno')->nullable(); // Asignar manualmente para identificar cada animal
             $table->string('nombre', 100)->nullable();
             $table->string('imagen')->nullable();
             $table->string('estatus_genetico', 150)->nullable();
             $table->date('fecha_nacimiento')->nullable();
             $table->date('fecha_destete')->nullable();
-            $table->integer('id_siniiga')->nullable();
+            $table->string('id_siniiga')->nullable();
+            $table->string('id_registro')->nullable(); // ID PARA RAZA PURA
             // Foreign Key
             $table->foreignId('raza_id')->constrained('razas');
             $table->foreignId('sexo_id')->constrained('sexos');
             $table->foreignId('propietario_id')->constrained('propietarios');
             $table->foreignId('estatus_comercio_id')->constrained('estatus_comercio');
-            $table->foreignId('madre_id')->nullable();
-            $table->foreignId('padre_id')->nullable();
             $table->timestamps();
         });
     }

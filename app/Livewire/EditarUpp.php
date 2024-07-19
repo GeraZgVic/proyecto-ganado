@@ -11,6 +11,7 @@ class EditarUpp extends Component
     public $clave_upp;
     public $id;
     public $upp;
+    public $predio;
 
 
     // Obtener valores de bd - Similar a __construct()
@@ -19,13 +20,15 @@ class EditarUpp extends Component
         $this->upp = Upp::find($this->id);
         // Vincular nombre de bd con nombre del form
         $this->clave_upp = $this->upp->clave_upp;
+        $this->predio = $this->upp->predio;
     }
 
     public function update()
     {
         // Validar campo
         $validated = $this->validate([
-            'clave_upp' => 'required|min:12|max:12'
+            'clave_upp' => 'required|min:12|max:12',
+            'predio' => 'required'
         ]);
         
         // Actualizar registro

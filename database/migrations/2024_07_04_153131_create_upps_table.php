@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('upps', function (Blueprint $table) {
             $table->id();
             $table->string('clave_upp')->unique();
+            $table->string('predio');
             $table->timestamps();
         });
     }

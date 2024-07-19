@@ -26,10 +26,20 @@ class DatabaseSeeder extends Seeder
 
         // Upps
         $upps = [
-            ['clave_upp' => '270031311002','created_at' => now(), 'updated_at' => now()],
-            ['clave_upp'=> '270037514002','created_at' => now(), 'updated_at' => now()],
+            ['clave_upp' => '270031311002', 'predio' => 'Rancho Heredia', 'created_at' => now(), 'updated_at' => now()],
+            ['clave_upp' => '270037514002', 'predio' => 'Rancho Zúñiga', 'created_at' => now(), 'updated_at' => now()],
         ];
         DB::table('upps')->insert($upps);
+
+
+        // Propietarios
+        $propietarios = [
+            ['upp_id' => '1', 'nombre' => 'Karla Sofia', 'apellido_materno' => 'Hernández', 'apellido_paterno' => 'García', 'created_at' => now(), 'updated_at' => now()],
+            ['upp_id' => '1', 'nombre' => 'Keyla Sarai', 'apellido_materno' => 'Hernández', 'apellido_paterno' => 'García', 'created_at' => now(), 'updated_at' => now()],
+            ['upp_id' => '2', 'nombre' => 'Ada', 'apellido_materno' => 'Morales', 'apellido_paterno' => 'Hernández', 'created_at' => now(), 'updated_at' => now()],
+            ['upp_id' => '2', 'nombre' => 'Isaias', 'apellido_materno' => 'Gordillo', 'apellido_paterno' => 'García', 'created_at' => now(), 'updated_at' => now()],
+        ];
+        DB::table('propietarios')->insert($propietarios);
 
         // Estatus comercio
         $estatus_comercio = [

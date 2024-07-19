@@ -9,11 +9,14 @@ class AgregarUpp extends Component
 {
 
     public $clave_upp;
+    public $predio;
+
 
     public function save()
     {
         $validated = $this->validate([
-            'clave_upp' => 'required|min:12|max:12'
+            'clave_upp' => 'required|min:12|max:12|unique:upps',
+            'predio' => 'required'
         ]);
 
         // Crear registro

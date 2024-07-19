@@ -8,6 +8,9 @@
                     <th scope="col" class="px-6 py-3">
                         upp
                     </th>
+                    <th>
+                        Nombre del predio
+                    </th>
                     <th scope="col" class="px-12 py-3 text-right">
                         Acciones
                     </th>
@@ -18,6 +21,9 @@
                     <tr class="bg-white border-b hover:bg-gray-50" wire:key="{{ $upp->id }}">
                         <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                             {{ $upp->clave_upp }}
+                        </td>
+                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            {{ $upp->predio ? $upp->predio : 'Sin predio' }}
                         </td>
                         <td class="px-6 py-4 text-right flex justify-end gap-2">
                             {{-- Editar --}}

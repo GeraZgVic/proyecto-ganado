@@ -10,7 +10,7 @@ class Upp extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['clave_upp'];
+    protected $fillable = ['clave_upp', 'predio'];
 
 
     // Un upp pertenece a un propietario
