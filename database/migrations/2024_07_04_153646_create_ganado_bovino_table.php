@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('nombre', 100)->nullable();
             $table->string('imagen')->nullable();
-            $table->string('estatus_genetico', 150)->nullable();
+            // $table->string('estatus_genetico', 150)->nullable();
+            $table->enum('estatus_genetico', ['Vacía', 'Preñada', 'Donadora', 'Receptora']);
             $table->date('fecha_nacimiento')->nullable();
             $table->date('fecha_destete')->nullable();
             $table->string('id_siniiga')->nullable();
@@ -23,6 +24,7 @@ return new class extends Migration
             // Foreign Key
             $table->foreignId('raza_id')->constrained('razas');
             $table->foreignId('sexo_id')->constrained('sexos');
+            $table->foreignId('upp_id')->constrained('upps');
             $table->foreignId('propietario_id')->constrained('propietarios');
             $table->foreignId('estatus_comercio_id')->constrained('estatus_comercio');
             $table->timestamps();

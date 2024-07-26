@@ -12,6 +12,7 @@ class EditarUpp extends Component
     public $id;
     public $upp;
     public $predio;
+    public $hectarea;
 
 
     // Obtener valores de bd - Similar a __construct()
@@ -21,6 +22,7 @@ class EditarUpp extends Component
         // Vincular nombre de bd con nombre del form
         $this->clave_upp = $this->upp->clave_upp;
         $this->predio = $this->upp->predio;
+        $this->hectarea = $this->upp->hectarea;
     }
 
     public function update()
@@ -28,7 +30,8 @@ class EditarUpp extends Component
         // Validar campo
         $validated = $this->validate([
             'clave_upp' => 'required|min:12|max:12',
-            'predio' => 'required'
+            'predio' => 'required',
+            'hectarea' => 'nullable'
         ]);
         
         // Actualizar registro

@@ -10,9 +10,9 @@ use App\Models\Propietario;
 use App\Models\GanadoBovino;
 use App\Models\EstatusComercio;
 
-class AgregarGanadoBovino extends Component
+class EditarBovino extends Component
 {
-
+    public $id;
 
     public $nombre; // Nombre de la vaca,bovino,toro,etc
     public $id_interno; // Id asignado manual determina el color.
@@ -30,12 +30,41 @@ class AgregarGanadoBovino extends Component
     public $id_registro;
     public $upp_id;
 
-    public $selectedOption = 0;
+    public $ganadoBovino;
 
-    public function save()
+
+
+    public function mount()
+    {
+        $this->ganadoBovino = GanadoBovino::find($this->id);
+        // Sincronizar
+        $this->nombre = $this->ganadoBovino->nombre;
+        $this->id_interno = $this->ganadoBovino->id_interno;
+        $this->estatus_genetico = $this->ganadoBovino->estatus_genetico;
+        $this->fecha_nacimiento = $this->ganadoBovino->fecha_nacimiento;
+        $this->fecha_destete = $this->ganadoBovino->fecha_destete;
+        $this->id_siniiga = $this->ganadoBovino->id_siniiga;
+        $this->raza_id = $this->ganadoBovino->raza_id;
+        $this->sexo_id = $this->ganadoBovino->sexo_id;
+        $this->propietario_id = $this->ganadoBovino->propietario_id;
+        $this->estatus_comercio_id = $this->ganadoBovino->estatus_comercio_id;
+        $this->madre_id_interno = $this->ganadoBovino->madre_id_interno;
+        $this->padre_id_interno = $this->ganadoBovino->padre_id_interno;
+        $this->id_registro = $this->ganadoBovino->id_registro;
+        $this->upp_id = $this->ganadoBovino->upp_id;
+    }
+
+
+
+    public function update()
     {
         $validated = $this->validate([
-            'id_interno' => 'required|unique:ganado_bovinos,id_interno',
+            // 'id_interno' => 'required|unique:ganado_bovinos,id_interno',
+            'id_interno' => [
+                'required',
+                // La validación 'unique' ignora el registro actual durante la actualización
+                'unique:ganado_bovinos,id_interno,' . $this->ganadoBovino->id,
+            ],
             'nombre' => 'required',
             // 'imagen' => 'nullable', //EN espera
             'id_registro' => 'nullable',
@@ -53,17 +82,11 @@ class AgregarGanadoBovino extends Component
             'upp_id' => 'required'
         ]);
 
-        // Convertir los valores vacíos a NULL -> Para madre y padre id
-        foreach ($validated as $key => $value) {
-            if ($value === '') {
-                $validated[$key] = null;
-            }
-        }
+        $this->ganadoBovino->update($validated);
 
-        GanadoBovino::create($validated);
-
-        return redirect()->route('bovino.index')->with('success', '¡Agregado correctamente!');
+        return redirect()->route('bovino.index')->with('success', '¡Actualizado Correctamente!');
     }
+
 
     public function render()
     {
@@ -73,7 +96,8 @@ class AgregarGanadoBovino extends Component
         $propietarios = Propietario::all();
         $estatusComercios = EstatusComercio::all();
 
-        return view('livewire.agregar-ganado-bovino', [
+
+        return view('livewire.editar-bovino', [
             'razas' => $razas,
             'sexos' => $sexos,
             'propietarios' => $propietarios,

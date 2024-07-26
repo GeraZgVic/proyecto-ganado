@@ -11,6 +11,9 @@
                     <th>
                         Nombre del predio
                     </th>
+                    <th>
+                        Hectáreas
+                    </th>
                     <th scope="col" class="px-12 py-3 text-right">
                         Acciones
                     </th>
@@ -24,6 +27,9 @@
                         </td>
                         <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                             {{ $upp->predio ? $upp->predio : 'Sin predio' }}
+                        </td>
+                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            {{ $upp->hectarea ? $upp->hectarea : 'S/N' }}
                         </td>
                         <td class="px-6 py-4 text-right flex justify-end gap-2">
                             {{-- Editar --}}

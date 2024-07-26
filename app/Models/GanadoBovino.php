@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class GanadoBovino extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [
         'id_interno',
         'nombre',
@@ -19,6 +19,7 @@ class GanadoBovino extends Model
         'id_siniiga',
         'raza_id',
         'sexo_id',
+        'upp_id',
         'propietario_id',
         'estatus_comercio_id',
         'madre_id_interno',
@@ -70,8 +71,14 @@ class GanadoBovino extends Model
         return $this->belongsTo(Razas::class, 'raza_id', 'id');
     }
 
-    public function estatusComercio() 
+    public function estatusComercio()
     {
         return $this->belongsTo(EstatusComercio::class, 'estatus_comercio_id', 'id');
+    }
+
+    // Un Upp pertenece a un ganado
+    public function upp()
+    {
+        return $this->belongsTo(Upp::class, 'upp_id', 'id');
     }
 }

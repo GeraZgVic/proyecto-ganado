@@ -13,16 +13,23 @@
                     {{ $bovino->id_interno }}</span>
             </div>
         </div>
+       
+
         <div class="p-6">
             <h2 class="text-2xl font-bold text-gray-800 mb-4">{{ $bovino->nombre }}</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
+                    <p class="text-sm font-semibold text-gray-600">Predio</p>
+                    <p class="text-lg text-gray-900">{{ $bovino->upp->predio ?? 'Sin predio' }}</p>
+                </div>
+                <div>
                     <p class="text-sm font-semibold text-gray-600">Estatus Genético</p>
-                    <p class="text-lg text-gray-900">{{ $bovino->estatus_genetico }}</p>
+                    <p class="text-lg text-gray-900">{{ $bovino->estatus_genetico ?? 'Sin estatus' }}</p>
                 </div>
                 <div>
                     <p class="text-sm font-semibold text-gray-600">Fecha Nacimiento</p>
-                    <p class="text-lg text-gray-900">{{ \Carbon\Carbon::parse($bovino->fecha_nacimiento)->format('d-m-Y') }}
+                    <p class="text-lg text-gray-900">
+                        {{ \Carbon\Carbon::parse($bovino->fecha_nacimiento)->format('d-m-Y') }}
                     </p>
                 </div>
                 <div>
@@ -34,10 +41,14 @@
                     <p class="text-sm font-semibold text-gray-600">ID Siniiga</p>
                     <p class="text-lg text-gray-900">{{ $bovino->id_siniiga }}</p>
                 </div>
-                <div>
-                    <p class="text-sm font-semibold text-gray-600">ID Registro</p>
-                    <p class="text-lg text-gray-900">{{ $bovino->id_registro }}</p>
-                </div>
+
+                @if ($bovino->id_registro)
+                    <div>
+                        <p class="text-sm font-semibold text-gray-600">ID Registro</p>
+                        <p class="text-lg text-gray-900">{{ $bovino->id_registro }}</p>
+                    </div>
+                @endif
+
                 <div>
                     <p class="text-sm font-semibold text-gray-600">Raza</p>
                     <p class="text-lg text-gray-900">{{ $bovino->raza->nombre }}</p>
@@ -54,18 +65,11 @@
                     <p class="text-sm font-semibold text-gray-600">Estatus Comercio</p>
                     <p class="text-lg text-gray-900">{{ $bovino->estatusComercio->tipo_ganado }}</p>
                 </div>
-                <div>
-                    <p class="text-sm font-semibold text-gray-600">Madre</p>
-                    <p class="text-lg text-gray-900">{{ $bovino->madre ? $bovino->madre->nombre : 'Sin madre' }}</p>
-                </div>
-                <div>
-                    <p class="text-sm font-semibold text-gray-600">Padre</p>
-                    <p class="text-lg text-gray-900">{{ $bovino->padre ? $bovino->padre->nombre : 'Sin padre' }}</p>
-                </div>
+
                 <div class="sm:col-span-2">
                     <p class="text-sm font-semibold text-gray-600 mb-2">Hijos</p>
                     @php
-                     // Combina ambas relaciones (padreHijo y madreHijo) en una colección única
+                        // Combina ambas relaciones (padreHijo y madreHijo) en una colección única
                         $hijos = $bovino->padreHijo->merge($bovino->madreHijo);
                     @endphp
                     @if ($hijos->isEmpty())
@@ -75,16 +79,48 @@
                             @foreach ($hijos as $hijo)
                                 <div class="bg-gray-100 p-4 rounded-lg shadow">
                                     <p class="text-lg font-bold text-gray-800">{{ $hijo->nombre }}</p>
-                                    <p class="text-sm text-gray-600">Fecha de Nacimiento: {{ \Carbon\Carbon::parse($hijo->fecha_nacimiento)->format('d-m-Y') }}</p>
+                                    <p class="text-sm text-gray-600">Fecha de Nacimiento:
+                                        {{ \Carbon\Carbon::parse($hijo->fecha_nacimiento)->format('d-m-Y') }}</p>
                                     <p class="text-sm text-gray-600">Raza: {{ $hijo->raza->nombre }}</p>
-                                    <a href="{{ route('bovino-show.index', $hijo->id) }}" class="text-blue-500 hover:text-blue-700 mt-2 inline-block">Ver más</a>
+                                    <a href="{{ route('bovino.show', $hijo->id) }}"
+                                        class="text-blue-500 hover:text-blue-700 mt-2 inline-block">Ver más</a>
                                 </div>
                             @endforeach
                         </div>
                     @endif
                 </div>
-                
+
             </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4 p-4">
+            {{-- Información de la Madre --}}
+            @if ($bovino->madre)
+                <div class="space-y-1">
+                    <p class="text-sm font-semibold text-gray-800">Madre</p>
+                    <p class="text-lg text-gray-800">{{ $bovino->madre->nombre }}</p>
+                    <a href="{{ route('bovino.show', $bovino->madre->id) }}">
+                        <img class="w-full h-auto rounded-md mt-2 transition duration-150 hover:scale-105"
+                            src="{{ $bovino->madre->imagen ?? 'https://definicion.de/wp-content/uploads/2015/02/vaca-1.jpg' }}"
+                            alt="Imagen de la madre">
+                    </a>
+                    
+                </div>
+            @endif
+
+            {{-- Información del Padre --}}
+            @if ($bovino->padre)
+                <div class="space-y-1">
+                    <p class="text-sm font-semibold text-gray-800">Padre</p>
+                    <p class="text-lg text-gray-800">{{ $bovino->padre->nombre }}</p>
+                    <a href="{{ route('bovino.show', $bovino->padre->id) }}">
+                        <img class="w-full h-auto rounded-md mt-2 transition duration-150 hover:scale-105"
+                            src="{{ $bovino->padre->imagen ?? 'https://as1.ftcdn.net/v2/jpg/02/50/64/86/1000_F_250648617_7wyDhQA4bfHk9eZum62DYmSL7lvetmuq.jpg' }}"
+                            alt="Imagen del padre">
+                    </a>
+                    
+                </div>
+            @endif
         </div>
     </div>
 @endsection

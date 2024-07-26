@@ -10,13 +10,15 @@ class AgregarUpp extends Component
 
     public $clave_upp;
     public $predio;
+    public $hectarea;
 
 
     public function save()
     {
         $validated = $this->validate([
             'clave_upp' => 'required|min:12|max:12|unique:upps',
-            'predio' => 'required'
+            'predio' => 'required',
+            'hectarea' => 'nullable'
         ]);
 
         // Crear registro

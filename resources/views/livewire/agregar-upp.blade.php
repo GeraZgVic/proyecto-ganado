@@ -34,12 +34,19 @@
                         type="text" placeholder="Clave upp">
                     <x-input-error :messages="$errors->get('clave_upp')" class="mt-2" />
                 </div>
-                <div>
+                <div class="mb-2">
                     <label for="predio" class="block text-sm font-medium mb-2 text-start">Predio</label>
                     <input wire:model="predio" id="predio" wire:dirty.class="border-green-500 focus:border-green-500"
                         class="w-full border border-gray-100 rounded-md shadow-sm text-sm py-2 px-3 focus:outline-none focus:ring focus:ring-green-200"
                         type="text" placeholder="Nombre del predio">
                     <x-input-error :messages="$errors->get('predio')" class="mt-2" />
+                </div>
+                <div>
+                    <label for="hectarea" class="block text-sm font-medium mb-2 text-start">Numero de hectáreas</label>
+                    <input wire:model="hectarea" id="hectarea" wire:dirty.class="border-green-500 focus:border-green-500"
+                        class="w-full border border-gray-100 rounded-md shadow-sm text-sm py-2 px-3 focus:outline-none focus:ring focus:ring-green-200"
+                        type="number">
+                    <x-input-error :messages="$errors->get('hectarea')" class="mt-2" />
                 </div>
 
 

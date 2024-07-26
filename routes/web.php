@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function() {
 
     // Ganado Bovino
     Route::get('/ganado-bovino', [GanadoBovinoController::class, 'index'])->name('bovino.index');
-    Route::get('/ganado-bovino/{bovino}', [GanadoBovinoController::class, 'show'])->name('bovino-show.index');
+    Route::get('/ganado-bovino/{bovino}', [GanadoBovinoController::class, 'show'])->name('bovino.show');
     Route::delete('/bovino/delete/{bovino}', [GanadoBovinoController::class, 'destroy']);
     
     

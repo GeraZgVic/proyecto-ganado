@@ -10,7 +10,7 @@ class Upp extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['clave_upp', 'predio'];
+    protected $fillable = ['clave_upp', 'predio', 'hectarea'];
 
 
     // Un upp pertenece a un propietario
@@ -18,4 +18,12 @@ class Upp extends Model
     {
         return $this->belongsTo(Propietario::class, 'upp_id', 'id'); // 'upp_id' es la clave externa en la tabla 'upps', 'id' es la clave primaria en 'propietarios'
     }
+
+
+    public function bovino()
+    {
+        return $this->hasOne(GanadoBovino::class, 'upp_id', 'id');
+    }
+    
+    
 }

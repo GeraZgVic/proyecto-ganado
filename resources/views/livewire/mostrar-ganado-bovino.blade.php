@@ -39,7 +39,7 @@
                     <tr class="bg-white border-b hover:bg-gray-50 text-center font-Montserrat"
                         wire:key="{{ $bovino->id }}">
                         <td scope="row" class="pl-6 py-4  text-gray-500 whitespace-nowrap">
-                            <a href="{{route('bovino-show.index', $bovino->id)}}">
+                            <a href="{{route('bovino.show', $bovino->id)}}">
                                 <svg class="h-6 w-6 text-blue-500" width="24" height="24" viewBox="0 0 24 24"
                                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
                                     stroke-linejoin="round">
@@ -77,7 +77,7 @@
 
                         <td class="px-6 py-4 text-right flex justify-end gap-2">
                             {{-- Editar --}}
-                            {{-- <livewire:editar-bovino id="{{$bovino->id}}" :key="$bovino->id" /> --}}
+                            <livewire:editar-bovino id="{{$bovino->id}}" :key="$bovino->id" />
                             {{-- Eliminar --}}
                             <button type="button" onclick="confirmDelete({{ $bovino->id }})"
                                 class="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm  text-gray-500 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white focus:ring-4 focus:outline-none focus:ring-pink-200">
