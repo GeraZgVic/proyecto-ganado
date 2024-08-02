@@ -7,28 +7,38 @@ use Illuminate\Http\Request;
 
 class GanadoBovinoController extends Controller
 {
-    // Rangos 
-    /** Nota: Reemplazar nombres por id del propietario desde una consulta a la base de datos */
-    // protected $rangos = [
-    //     'Isaias' => ['min' => 100, 'max' => 199, 'color' => 'azul'],
-    //     'Ada' => ['min' => 500, 'max' => 599, 'color' => 'blanco'],
-    //     'Keila' => ['min' => 600, 'max' => 699, 'color' => 'naranja'],
-    //     'Sophia' => ['min' => 700, 'max' => 799, 'color' => 'azul_fuerte'],
-    // ];
-
-    public function index() 
+    
+    public function index()
     {
         return view('ganado.bovino');
     }
 
-    public function show(GanadoBovino $bovino) {
+    public function getColorById($id)
+    {
+        if ($id >= 100 && $id <= 199) {
+            return 'bg-blue-500';
+        } elseif ($id >= 500 && $id <= 599) {
+            return 'bg-white';
+        } elseif ($id >= 600 && $id <= 699) {
+            return 'bg-amber-500';
+        } elseif ($id >= 700 && $id <= 799) {
+            return 'bg-blue-700';
+        }
+        return 'bg-gray-500'; // Color por defecto
+    }
+
+    public function show(GanadoBovino $bovino)
+    {
+        $colorClass = $this->getColorById($bovino->id_interno);
 
         return view('ganado.show-bovino', [
-            'bovino' => $bovino
+            'bovino' => $bovino,
+            'colorClass' => $colorClass
         ]);
     }
 
-    public function destroy(GanadoBovino $bovino) {
+    public function destroy(GanadoBovino $bovino)
+    {
         $bovino->delete();
     }
 }

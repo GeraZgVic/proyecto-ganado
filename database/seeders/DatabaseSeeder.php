@@ -26,8 +26,8 @@ class DatabaseSeeder extends Seeder
 
         // Upps
         $upps = [
-            ['clave_upp' => '270031311002', 'predio' => 'Rancho Heredia', 'created_at' => now(), 'updated_at' => now()],
-            ['clave_upp' => '270037514002', 'predio' => 'Rancho Zúñiga', 'created_at' => now(), 'updated_at' => now()],
+            ['clave_upp' => '270031311002', 'predio' => 'Rancho Ejemplo 1', 'created_at' => now(), 'updated_at' => now()],
+            ['clave_upp' => '270037514002', 'predio' => 'Rancho Ejemplo 2', 'created_at' => now(), 'updated_at' => now()],
         ];
         DB::table('upps')->insert($upps);
 
@@ -50,5 +50,6 @@ class DatabaseSeeder extends Seeder
 
         $this->call(RazasSeederTable::class);
         $this->call(SexoSeederTable::class);
+        $this->call(bovinos::class);
     }
 }

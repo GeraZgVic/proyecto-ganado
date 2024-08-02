@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('titulo')
-    Bovino | {{ $bovino->nombre }}
+    Bovino | {{ $bovino->nombre ?? 'Sin nombre' }}
 @endsection
 
 @section('contenido')
@@ -9,34 +9,42 @@
         <div class="bg-cover bg-center h-[25rem] p-4"
             style="background-image: url({{ $bovino->imagen ?? 'https://images.unsplash.com/photo-1530268782463-418534b0affa?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' }});">
             <div class="flex justify-end">
-                <span class="bg-blue-900 text-white text-xs font-semibold tracking-wide uppercase rounded-full px-2 py-1">ID:
+                <span
+                    class="{{ $colorClass }} {{ $colorClass == 'bg-white' ? 'text-black' : 'text-white' }} text-xs font-semibold tracking-wide uppercase rounded-full px-2 py-1">ID:
                     {{ $bovino->id_interno }}</span>
             </div>
         </div>
-       
+
 
         <div class="p-6">
-            <h2 class="text-2xl font-bold text-gray-800 mb-4">{{ $bovino->nombre }}</h2>
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">{{ $bovino->nombre ?? 'Sin nombre' }}</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                     <p class="text-sm font-semibold text-gray-600">Predio</p>
                     <p class="text-lg text-gray-900">{{ $bovino->upp->predio ?? 'Sin predio' }}</p>
                 </div>
+
                 <div>
                     <p class="text-sm font-semibold text-gray-600">Estatus Genético</p>
                     <p class="text-lg text-gray-900">{{ $bovino->estatus_genetico ?? 'Sin estatus' }}</p>
                 </div>
                 <div>
+                    <p class="text-sm font-semibold text-gray-600">Propietario</p>
+                    <p class="text-lg text-gray-900">{{ $bovino->propietario->nombre }}</p>
+                </div>
+                <div>
                     <p class="text-sm font-semibold text-gray-600">Fecha Nacimiento</p>
                     <p class="text-lg text-gray-900">
-                        {{ \Carbon\Carbon::parse($bovino->fecha_nacimiento)->format('d-m-Y') }}
+                        {{ $bovino->fecha_nacimiento ? \Carbon\Carbon::parse($bovino->fecha_nacimiento)->format('d-m-Y') : 'N/A' }}
                     </p>
                 </div>
                 <div>
                     <p class="text-sm font-semibold text-gray-600">Fecha Destete</p>
-                    <p class="text-lg text-gray-900">{{ \Carbon\Carbon::parse($bovino->fecha_destete)->format('d-m-Y') }}
+                    <p class="text-lg text-gray-900">
+                        {{ $bovino->fecha_destete ? \Carbon\Carbon::parse($bovino->fecha_destete)->format('d-m-Y') : 'N/A' }}
                     </p>
                 </div>
+
                 <div>
                     <p class="text-sm font-semibold text-gray-600">ID Siniiga</p>
                     <p class="text-lg text-gray-900">{{ $bovino->id_siniiga }}</p>
@@ -56,10 +64,6 @@
                 <div>
                     <p class="text-sm font-semibold text-gray-600">Sexo</p>
                     <p class="text-lg text-gray-900">{{ $bovino->sexo->nombre }}</p>
-                </div>
-                <div>
-                    <p class="text-sm font-semibold text-gray-600">Propietario</p>
-                    <p class="text-lg text-gray-900">{{ $bovino->propietario->nombre }}</p>
                 </div>
                 <div>
                     <p class="text-sm font-semibold text-gray-600">Estatus Comercio</p>
@@ -104,7 +108,7 @@
                             src="{{ $bovino->madre->imagen ?? 'https://definicion.de/wp-content/uploads/2015/02/vaca-1.jpg' }}"
                             alt="Imagen de la madre">
                     </a>
-                    
+
                 </div>
             @endif
 
@@ -118,7 +122,7 @@
                             src="{{ $bovino->padre->imagen ?? 'https://as1.ftcdn.net/v2/jpg/02/50/64/86/1000_F_250648617_7wyDhQA4bfHk9eZum62DYmSL7lvetmuq.jpg' }}"
                             alt="Imagen del padre">
                     </a>
-                    
+
                 </div>
             @endif
         </div>

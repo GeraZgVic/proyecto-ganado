@@ -18,7 +18,7 @@
                         Propietario
                     </th>
                     <th scope="col" class="px-12 py-3">
-                        Estatus Genético
+                        Id Siniiga
                     </th>
                     <th scope="col" class="px-12 py-3">
                         Fecha Nacimiento
@@ -35,12 +35,27 @@
                 </tr>
             </thead>
             <tbody>
+                @php
+                    function getColorById($id)
+                    {
+                        if ($id >= 100 && $id <= 199) {
+                            return 'bg-blue-500';
+                        } elseif ($id >= 500 && $id <= 599) {
+                            return 'bg-white';
+                        } elseif ($id >= 600 && $id <= 699) {
+                            return 'bg-amber-500';
+                        } elseif ($id >= 700 && $id <= 799) {
+                            return 'bg-blue-700';
+                        }
+                        return 'bg-gray-500'; // Color por defecto
+                    }
+                @endphp
                 @foreach ($bovinos as $bovino)
                     <tr class="bg-white border-b hover:bg-gray-50 text-center font-Montserrat"
                         wire:key="{{ $bovino->id }}">
                         <td scope="row" class="pl-6 py-4  text-gray-500 whitespace-nowrap">
-                            <a href="{{route('bovino.show', $bovino->id)}}">
-                                <svg class="h-6 w-6 text-blue-500" width="24" height="24" viewBox="0 0 24 24"
+                            <a href="{{ route('bovino.show', $bovino->id) }}">
+                                <svg class="h-6 w-6 text-green-500" width="24" height="24" viewBox="0 0 24 24"
                                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
                                     stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" />
@@ -50,22 +65,22 @@
                                 </svg>
                             </a>
                         </td>
-                        <td scope="row" class="px-6 py-4  text-gray-500 whitespace-nowrap">
-                            {{-- Para acceder a la madre o padre --}}
-                            {{-- {{$bovino->madre ? $bovino->madre->nombre : ''}} --}}
-                            {{ $bovino->id_interno }}
+                        <td scope="row" class="{{getColorById($bovino->id_interno) == 'bg-white' ? 'text-black' : 'text-white'}} whitespace-nowrap">
+                           <span class="{{getColorById($bovino->id_interno)}} px-2 py-1 rounded-full shadow-md">
+                               {{ $bovino->id_interno }}
+                            </span>
                         </td>
                         <td scope="row" class="px-6 py-4  text-gray-500 whitespace-nowrap">
-                            {{ $bovino->nombre }}
+                            {{ $bovino->nombre ?? 'Sin nombre' }}
                         </td>
                         <td scope="row" class="px-6 py-4  text-gray-500 whitespace-nowrap">
                             {{ $bovino->propietario->nombre }}
                         </td>
                         <td scope="row" class="px-6 py-4  text-gray-500 whitespace-nowrap">
-                            {!! $bovino->estatus_genetico ? $bovino->estatus_genetico : '<p class="text-red-500">Sin estatus</p>' !!}
+                            {{ $bovino->id_siniiga ?? 'N/A' }}
                         </td>
-                        <td scope="row" class="px-6 py-4  text-gray-500 whitespace-nowrap">
-                            {{ \Carbon\Carbon::parse($bovino->fecha_nacimiento)->format('d-m-Y') }}
+                        <td scope="row" class="px-6 py-4 text-gray-500 whitespace-nowrap">
+                            {{ $bovino->fecha_nacimiento ? \Carbon\Carbon::parse($bovino->fecha_nacimiento)->format('d-m-Y') : 'N/A' }}
                         </td>
                         <td scope="row" class="px-6 py-4  text-gray-500 whitespace-nowrap">
                             {{ $bovino->raza->nombre }}
@@ -73,11 +88,11 @@
                         <td scope="row" class="px-6 py-4  text-gray-500 whitespace-nowrap">
                             {{ $bovino->sexo->nombre }}
                         </td>
-                        
+
 
                         <td class="px-6 py-4 text-right flex justify-end gap-2">
                             {{-- Editar --}}
-                            <livewire:editar-bovino id="{{$bovino->id}}" :key="$bovino->id" />
+                            <livewire:editar-bovino id="{{ $bovino->id }}" :key="$bovino->id" />
                             {{-- Eliminar --}}
                             <button type="button" onclick="confirmDelete({{ $bovino->id }})"
                                 class="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm  text-gray-500 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white focus:ring-4 focus:outline-none focus:ring-pink-200">
