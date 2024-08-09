@@ -15,24 +15,6 @@ class bovinos extends Seeder
     {
         $bovinos = [
             [
-                'id_interno' => 122,
-                'nombre' => 'Rubi',
-                'estatus_genetico' => 'Vacía',
-                'fecha_nacimiento' => null,
-                'fecha_destete' => null,
-                'id_siniiga' => '2714762409',
-                'id_registro' => null,
-                'raza_id' => 11,  // Beefmaster
-                'sexo_id' => 2,   // Hembra
-                'upp_id' => 1,
-                'propietario_id' => 4,
-                'estatus_comercio_id' => 1,  // Puro
-                'madre_id_interno' => null,
-                'padre_id_interno' => null,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
                 'id_interno' => 107,
                 'nombre' => null,
                 'estatus_genetico' => 'Preñada',
@@ -45,6 +27,24 @@ class bovinos extends Seeder
                 'upp_id' => 1,
                 'propietario_id' => 4,
                 'estatus_comercio_id' => 2,
+                'madre_id_interno' => null,
+                'padre_id_interno' => null,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'id_interno' => 122,
+                'nombre' => 'Rubi',
+                'estatus_genetico' => 'Vacía',
+                'fecha_nacimiento' => null,
+                'fecha_destete' => null,
+                'id_siniiga' => '2714762409',
+                'id_registro' => null,
+                'raza_id' => 11,  // Beefmaster
+                'sexo_id' => 2,   // Hembra
+                'upp_id' => 1,
+                'propietario_id' => 4,
+                'estatus_comercio_id' => 1,  // Puro
                 'madre_id_interno' => null,
                 'padre_id_interno' => null,
                 'created_at' => now(),
@@ -81,7 +81,7 @@ class bovinos extends Seeder
                 'upp_id' => 1,
                 'propietario_id' => 4,
                 'estatus_comercio_id' => 1,
-                'madre_id_interno' => 122,        // Si no tienes un valor, usa null
+                'madre_id_interno' => 122,        // Si no tienes un valor, usa null (122)
                 'padre_id_interno' => null,        // Igual que la anterior
                 'created_at' => now(),
                 'updated_at' => now()
@@ -99,7 +99,7 @@ class bovinos extends Seeder
                 'upp_id' => 1,
                 'propietario_id' => 4,
                 'estatus_comercio_id' => 2,
-                'madre_id_interno' => 107,        // Si no tienes un valor, usa null
+                'madre_id_interno' => 107,        // Si no tienes un valor, usa null (107)
                 'padre_id_interno' => null,        // Igual que la anterior
                 'created_at' => now(),
                 'updated_at' => now()
@@ -321,6 +321,7 @@ class bovinos extends Seeder
             //     'created_at' => now(),
             //     'updated_at' => now()
             // ],
+            
             [
                 'id_interno' => 128,
                 'nombre' => null,

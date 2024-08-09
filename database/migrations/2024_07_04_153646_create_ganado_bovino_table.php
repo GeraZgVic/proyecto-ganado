@@ -17,7 +17,13 @@ return new class extends Migration
             $table->string('imagen')->nullable();
             // $table->string('estatus_genetico', 150)->nullable();
             $table->enum('estatus_genetico', ['Vacía', 'Preñada', 'Donadora', 'Receptora']);
-            $table->date('fecha_nacimiento')->nullable();
+            $table->date('fecha_nacimiento')->nullable(); // para gestionar las etapas del bovino
+
+            // NUEVOS CAMPOS (FALTA POR ANALIZAR)
+            $table->float('peso_al_nacer')->nullable();
+            $table->float('peso_al_destete')->nullable();
+            $table->float('peso_al_year')->nullable();
+
             $table->date('fecha_destete')->nullable();
             $table->string('id_siniiga')->nullable();
             $table->string('id_registro')->nullable(); // ID PARA RAZA PURA

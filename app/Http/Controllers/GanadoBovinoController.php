@@ -30,6 +30,7 @@ class GanadoBovinoController extends Controller
     public function show(GanadoBovino $bovino)
     {
         $colorClass = $this->getColorById($bovino->id_interno);
+        
 
         return view('ganado.show-bovino', [
             'bovino' => $bovino,

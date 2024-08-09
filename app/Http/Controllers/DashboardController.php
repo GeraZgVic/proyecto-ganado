@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Upp;
+use App\Models\Razas;
 use App\Models\Propietario;
 use App\Models\GanadoBovino;
 use Illuminate\Http\Request;
@@ -12,9 +14,14 @@ class DashboardController extends Controller
 
         $propietarios = Propietario::all();
         $bovinos = GanadoBovino::all();
+        $upps = Upp::all();
+        $razas = Razas::all();
+        
         return view('dashboard',[
             'propietarios' => $propietarios,
-            'bovinos' => $bovinos
+            'bovinos' => $bovinos,
+            'upps' => $upps,
+            'razas' => $razas
         ]);
     }
 }

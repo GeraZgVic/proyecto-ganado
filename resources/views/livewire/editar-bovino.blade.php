@@ -10,7 +10,7 @@
     </button>
     <div x-cloak x-show="modalIsOpen" x-transition.opacity.duration.200ms x-trap.inert.noscroll="modalIsOpen" @keydown.esc.window="modalIsOpen = false" @click.self="modalIsOpen = false" class="fixed inset-0 z-30 flex items-end justify-center bg-black/20 p-4 pb-8 backdrop-blur-md sm:items-center lg:p-8" role="dialog" aria-modal="true" aria-labelledby="defaultModalTitle">
         <!-- Modal Dialog --> 
-        <div x-show="modalIsOpen" x-transition:enter="transition ease-out duration-200 delay-100 motion-reduce:transition-opacity" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" class="flex flex-col gap-4 overflow-hidden rounded-xl border border-slate-300 bg-white text-slate-700 w-full max-w-xl">                 
+        <div x-show="modalIsOpen" x-transition:enter="transition ease-out duration-200 delay-100 motion-reduce:transition-opacity" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" class="flex flex-col gap-4 rounded-xl border border-slate-300 bg-white text-slate-700 w-full h-[95vh] overflow-auto max-w-xl">                 
             <!-- Dialog Header -->
             <div class="flex items-center justify-between border-b border-slate-300 bg-slate-100/60 p-4">
                 <h3 id="defaultModalTitle" class="font-semibold tracking-wide text-black">Editar Bovino</h3>
@@ -22,7 +22,8 @@
             </div>
             <form wire:submit="update" class="p-4">
                 <div class="grid lg:grid-cols-2 gap-2">
-
+                    {{-- Información básica --}}
+                    <h2 class="text-xs text-start text-gray-400 col-span-2">Información Básica</h2>
                     <div>
                         <label for="nombre" class="block text-sm font-medium mb-2 text-start">Nombre Bovino</label>
                         <input wire:model="nombre" id="nombre"
@@ -31,15 +32,6 @@
                             type="text" placeholder="Nombre del bovino">
                         <x-input-error :messages="$errors->get('nombre')" class="mt-2" />
                     </div>
-                    <div>
-                        <label for="id_interno" class="block text-sm font-medium mb-2 text-start">Id Interno</label>
-                        <input wire:model="id_interno" id="id_interno"
-                            wire:dirty.class="border-green-500 focus:border-green-500"
-                            class="w-full border border-gray-100 rounded-md shadow-sm text-sm py-2 px-3 focus:outline-none focus:ring focus:ring-green-200"
-                            type="text" placeholder="Id Interno del bovino">
-                        <x-input-error :messages="$errors->get('id_interno')" class="mt-2" />
-                    </div>
-                    
                     <div>
                         <label for="estatus_genetico" class="block text-sm font-medium mb-2 text-start">Estatus Genético</label>
                         
@@ -55,32 +47,34 @@
                         
                         <x-input-error :messages="$errors->get('estatus_genetico')" class="mt-2" />
                     </div>
-                    
+                    {{-- NUEVOS CAMPOS (FALTAN POR ANALIZAR) --}}
+                    <div>
+                        <label for="peso_al_nacer" class="block text-sm font-medium mb-2 text-start">Peso al Nacer (kg):</label>
+                        <input wire:model="peso_al_nacer" id="peso_al_nacer"
+                            wire:dirty.class="border-green-500 focus:border-green-500"
+                            class="w-full border border-gray-100 rounded-md shadow-sm text-sm py-2 px-3 focus:outline-none focus:ring focus:ring-green-200"
+                            type="number" step="0.01" min="0">
+                        <x-input-error :messages="$errors->get('peso_al_nacer')" class="mt-2" />
+                    </div>
+                    <div>
+                        <label for="peso_al_destete" class="block text-sm font-medium mb-2 text-start">Peso al destete (kg):</label>
+                        <input wire:model="peso_al_destete" id="peso_al_destete"
+                            wire:dirty.class="border-green-500 focus:border-green-500"
+                            class="w-full border border-gray-100 rounded-md shadow-sm text-sm py-2 px-3 focus:outline-none focus:ring focus:ring-green-200"
+                            type="number" step="0.01" min="0">
+                        <x-input-error :messages="$errors->get('peso_al_destete')" class="mt-2" />
+                    </div>
 
                     <div>
-                        <label for="id_siniiga" class="block text-sm font-medium mb-2 text-start">Id Siniiga</label>
-                        <input wire:model="id_siniiga" id="id_siniiga"
+                        <label for="peso_al_year" class="block text-sm font-medium mb-2 text-start">Peso al año (kg):</label>
+                        <input wire:model="peso_al_year" id="peso_al_year"
                             wire:dirty.class="border-green-500 focus:border-green-500"
                             class="w-full border border-gray-100 rounded-md shadow-sm text-sm py-2 px-3 focus:outline-none focus:ring focus:ring-green-200"
-                            type="text" placeholder="ID Siniiga">
-                        <x-input-error :messages="$errors->get('id_siniiga')" class="mt-2" />
+                            type="number" step="0.01" min="0">
+                        <x-input-error :messages="$errors->get('peso_al_year')" class="mt-2" />
                     </div>
-                    <div>
-                        <label for="madre_id_interno" class="block text-sm font-medium mb-2 text-start">ID Madre</label>
-                        <input wire:model="madre_id_interno" id="madre_id_interno"
-                            wire:dirty.class="border-green-500 focus:border-green-500"
-                            class="w-full border border-gray-100 rounded-md shadow-sm text-sm py-2 px-3 focus:outline-none focus:ring focus:ring-green-200"
-                            type="text" placeholder="ID Madre">
-                        <x-input-error :messages="$errors->get('madre_id_interno')" class="mt-2" />
-                    </div>
-                    <div>
-                        <label for="padre_id_interno" class="block text-sm font-medium mb-2 text-start">ID Padre</label>
-                        <input wire:model="padre_id_interno" id="padre_id_interno"
-                            wire:dirty.class="border-green-500 focus:border-green-500"
-                            class="w-full border border-gray-100 rounded-md shadow-sm text-sm py-2 px-3 focus:outline-none focus:ring focus:ring-green-200"
-                            type="text" placeholder="ID padre">
-                        <x-input-error :messages="$errors->get('padre_id_interno')" class="mt-2" />
-                    </div>
+
+
                     <div>
                         <label for="fecha_nacimiento" class="block text-sm font-medium mb-2 text-start">Fecha de
                             nacimiento</label>
@@ -99,6 +93,44 @@
                             type="date">
                         <x-input-error :messages="$errors->get('fecha_destete')" class="mt-2" />
                     </div>
+
+                    {{-- PARENTESCO --}}
+                    <h2 class="text-xs text-start text-gray-400 col-span-2">Parentesco</h2>
+                    <div>
+                        <label for="madre_id_interno" class="block text-sm font-medium mb-2 text-start">ID Madre</label>
+                        <input wire:model="madre_id_interno" id="madre_id_interno"
+                            wire:dirty.class="border-green-500 focus:border-green-500"
+                            class="w-full border border-gray-100 rounded-md shadow-sm text-sm py-2 px-3 focus:outline-none focus:ring focus:ring-green-200"
+                            type="text" placeholder="ID Madre">
+                        <x-input-error :messages="$errors->get('madre_id_interno')" class="mt-2" />
+                    </div>
+                    <div>
+                        <label for="padre_id_interno" class="block text-sm font-medium mb-2 text-start">ID Padre</label>
+                        <input wire:model="padre_id_interno" id="padre_id_interno"
+                            wire:dirty.class="border-green-500 focus:border-green-500"
+                            class="w-full border border-gray-100 rounded-md shadow-sm text-sm py-2 px-3 focus:outline-none focus:ring focus:ring-green-200"
+                            type="text" placeholder="ID padre">
+                        <x-input-error :messages="$errors->get('padre_id_interno')" class="mt-2" />
+                    </div>
+                    {{-- Identificación --}}
+                    <h2 class="text-xs text-start text-gray-400 col-span-2">Identificación</h2>
+                    <div>
+                        <label for="id_interno" class="block text-sm font-medium mb-2 text-start">Id Interno</label>
+                        <input wire:model="id_interno" id="id_interno"
+                            wire:dirty.class="border-green-500 focus:border-green-500"
+                            class="w-full border border-gray-100 rounded-md shadow-sm text-sm py-2 px-3 focus:outline-none focus:ring focus:ring-green-200"
+                            type="text" placeholder="Id Interno del bovino">
+                        <x-input-error :messages="$errors->get('id_interno')" class="mt-2" />
+                    </div>
+                    
+                    <div>
+                        <label for="id_siniiga" class="block text-sm font-medium mb-2 text-start">Id Siniiga</label>
+                        <input wire:model="id_siniiga" id="id_siniiga"
+                            wire:dirty.class="border-green-500 focus:border-green-500"
+                            class="w-full border border-gray-100 rounded-md shadow-sm text-sm py-2 px-3 focus:outline-none focus:ring focus:ring-green-200"
+                            type="text" placeholder="ID Siniiga">
+                        <x-input-error :messages="$errors->get('id_siniiga')" class="mt-2" />
+                    </div>   
 
                     {{-- Campos foráneos --}}
                     <div>
@@ -125,6 +157,10 @@
                         </select>
                         <x-input-error :messages="$errors->get('sexo_id')" class="mt-2" />
                     </div>
+
+                    
+
+
                     <div x-data="{ selectedOption: $wire.entangle('estatus_comercio_id') }" class="">
                         <div>
                             <label for="estatus_comercio_id" class="block text-sm font-medium mb-2 text-start">Estatus Comercio (Tipo)</label>

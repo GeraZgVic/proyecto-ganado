@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class GanadoBovino extends Model
 {
@@ -24,8 +25,35 @@ class GanadoBovino extends Model
         'estatus_comercio_id',
         'madre_id_interno',
         'padre_id_interno',
-        'id_registro'
+        'id_registro',
+        // NUEVOS CAMPOS (FALTA POR ANALIZAR)
+        'peso_al_nacer',
+        'peso_al_destete',
+        'peso_al_year'
     ];
+
+
+    public function getEtapaAttribute()
+    {
+        if (!$this->fecha_nacimiento) {
+            return null; // O alguna otra lógica para manejar fechas de nacimiento nulas
+        }
+
+        $fechaNacimiento = Carbon::parse($this->fecha_nacimiento);
+        $edadEnMeses = $fechaNacimiento->diffInMonths(Carbon::now());
+
+        $sexo = $this->sexo_id; // 1 para macho, 2 para hembra
+
+        if ($edadEnMeses <= 7) {
+            return $sexo == 2 ? 'Lactante hembra' : 'Lactante macho'; // 2 para hembra
+        } elseif ($edadEnMeses >= 8 && $edadEnMeses <= 12) {
+            return $sexo == 2 ? 'Becerro hembra' : 'Becerro macho'; // 2 para hembra
+        } elseif ($edadEnMeses >= 13 && $edadEnMeses <= 24) {
+            return $sexo == 2 ? 'Vaquilla' : 'Novillo'; // 2 para hembra
+        } else {
+            return $sexo == 2 ? 'Vaca' : 'Toro'; // 2 para hembra
+        }
+    }
 
 
     // Relaciones usando id_interno

@@ -30,6 +30,11 @@ class AgregarGanadoBovino extends Component
     public $id_registro;
     public $upp_id;
 
+    // NUEVOS CAMPOS (FALTAN POR ANALIZAR)
+    public $peso_al_nacer;
+    public $peso_al_destete;
+    public $peso_al_year;
+
     public $selectedOption = 0;
 
     public function save()
@@ -50,7 +55,11 @@ class AgregarGanadoBovino extends Component
             'estatus_comercio_id' => 'required',
             'madre_id_interno' => 'nullable|exists:ganado_bovinos,id_interno',
             'padre_id_interno' => 'nullable|exists:ganado_bovinos,id_interno',
-            'upp_id' => 'required'
+            'upp_id' => 'required',
+            // NUEVOS CAMPOS
+            'peso_al_nacer' => 'nullable',
+            'peso_al_destete' => 'nullable',
+            'peso_al_year' => 'nullable'
         ]);
 
         // Convertir los valores vacíos a NULL -> Para madre y padre id

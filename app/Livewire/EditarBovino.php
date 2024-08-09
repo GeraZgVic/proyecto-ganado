@@ -29,6 +29,9 @@ class EditarBovino extends Component
     public $padre_id_interno;
     public $id_registro;
     public $upp_id;
+    public $peso_al_nacer;
+    public $peso_al_destete;
+    public $peso_al_year;
 
     public $ganadoBovino;
 
@@ -52,6 +55,10 @@ class EditarBovino extends Component
         $this->padre_id_interno = $this->ganadoBovino->padre_id_interno;
         $this->id_registro = $this->ganadoBovino->id_registro;
         $this->upp_id = $this->ganadoBovino->upp_id;
+        // NUEVOS CAMPOS
+        $this->peso_al_nacer = $this->ganadoBovino->peso_al_nacer;
+        $this->peso_al_destete = $this->ganadoBovino->peso_al_destete;
+        $this->peso_al_year = $this->ganadoBovino->peso_al_year;
     }
 
 
@@ -79,7 +86,10 @@ class EditarBovino extends Component
             'estatus_comercio_id' => 'required',
             'madre_id_interno' => 'nullable|exists:ganado_bovinos,id_interno',
             'padre_id_interno' => 'nullable|exists:ganado_bovinos,id_interno',
-            'upp_id' => 'required'
+            'upp_id' => 'required',
+            'peso_al_nacer' => 'nullable',
+            'peso_al_destete' => 'nullable',
+            'peso_al_year' => 'nullable',
         ]);
 
         $this->ganadoBovino->update($validated);

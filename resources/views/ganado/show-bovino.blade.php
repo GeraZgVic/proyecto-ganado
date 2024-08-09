@@ -10,7 +10,7 @@
             style="background-image: url({{ $bovino->imagen ?? 'https://images.unsplash.com/photo-1530268782463-418534b0affa?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' }});">
             <div class="flex justify-end">
                 <span
-                    class="{{ $colorClass }} {{ $colorClass == 'bg-white' ? 'text-black' : 'text-white' }} text-xs font-semibold tracking-wide uppercase rounded-full px-2 py-1">ID:
+                    class="{{ $colorClass }} {{ $colorClass == 'bg-white' ? 'text-black' : 'text-white' }} text-base font-semibold tracking-wide uppercase rounded-full px-2 py-1">ID:
                     {{ $bovino->id_interno }}</span>
             </div>
         </div>
@@ -19,6 +19,10 @@
         <div class="p-6">
             <h2 class="text-2xl font-bold text-gray-800 mb-4">{{ $bovino->nombre ?? 'Sin nombre' }}</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                    <p class="text-sm font-semibold text-gray-600">Etapa</p>
+                    <p class="text-lg text-gray-900">{{ $bovino->etapa ?? 'Sin etapa' }}</p>
+                </div>
                 <div>
                     <p class="text-sm font-semibold text-gray-600">Predio</p>
                     <p class="text-lg text-gray-900">{{ $bovino->upp->predio ?? 'Sin predio' }}</p>
@@ -69,6 +73,22 @@
                     <p class="text-sm font-semibold text-gray-600">Estatus Comercio</p>
                     <p class="text-lg text-gray-900">{{ $bovino->estatusComercio->tipo_ganado }}</p>
                 </div>
+
+                {{-- NUEVOS REGISTROS --}}
+                <div>
+                    <p class="text-sm font-semibold text-gray-600">Peso al nacer</p>
+                    <p class="text-lg text-gray-900">{{ $bovino->peso_al_nacer ?? 'S/P'}} Kg</p>
+                </div>
+                <div>
+                    <p class="text-sm font-semibold text-gray-600">Peso al destete</p>
+                    <p class="text-lg text-gray-900">{{ $bovino->peso_al_nacer ?? 'S/P'}} Kg</p>
+                </div>
+                <div>
+                    <p class="text-sm font-semibold text-gray-600">Peso al año</p>
+                    <p class="text-lg text-gray-900">{{ $bovino->peso_al_year ?? 'S/P' }} Kg</p>
+                </div>
+
+
 
                 <div class="sm:col-span-2">
                     <p class="text-sm font-semibold text-gray-600 mb-2">Hijos</p>

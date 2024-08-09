@@ -9,7 +9,7 @@ class MostrarGanadoBovino extends Component
 {
     public function render()
     {
-        $bovinos = GanadoBovino::orderBy('created_at', 'desc')->paginate();
+        $bovinos = GanadoBovino::orderBy('id_interno', 'asc')->paginate();
 
         return view('livewire.mostrar-ganado-bovino', [
             'bovinos' => $bovinos
