@@ -17,7 +17,11 @@
 
 
         <div class="p-6">
-            <h2 class="text-2xl font-bold text-gray-800 mb-4">{{ $bovino->nombre ?? 'Sin nombre' }}</h2>
+            <div class="mb-4">
+                <h2 class="text-2xl font-bold text-gray-800">{{ $bovino->nombre ?? 'Sin nombre' }}</h2>
+                <span class="text-sm text-gray-500">Agregado {{$bovino->created_at->diffForHumans()}}</span>
+            </div>
+
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                     <p class="text-sm font-semibold text-gray-600">Etapa</p>

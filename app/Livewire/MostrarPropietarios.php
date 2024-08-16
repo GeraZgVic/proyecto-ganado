@@ -9,13 +9,24 @@ use Livewire\WithPagination;
 class MostrarPropietarios extends Component
 {
     use WithPagination;
-    
+
+    public $search = '';
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
     public function render()
     {
-        $propietarios = Propietario::orderBy('created_at', 'desc')->paginate(10);
+        $query = Propietario::orderBy('created_at', 'desc');
 
-        return view('livewire.mostrar-propietarios', [
-            'propietarios' => $propietarios
-        ]);
+        // Filtrar por término
+        if ($this->search) {
+            $query->where('nombre', 'LIKE', "%" . $this->search . "%");
+        }
+
+        $propietarios = $query->paginate(5);
+        return view('livewire.mostrar-propietarios', compact('propietarios'));
     }
 }

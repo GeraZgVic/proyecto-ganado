@@ -6,30 +6,30 @@
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 text-center font-Montserrat">
                 <tr>
                     <th scope="col" class="px-6 py-3">
-
+                        
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Id Interno
                     </th>
-                    <th scope="col" class="px-12 py-3">
+                    <th scope="col" class="px-6 py-3">
                         Nombre
                     </th>
-                    <th scope="col" class="px-12 py-3">
+                    <th scope="col" class="px-6 py-3">
                         Propietario
                     </th>
-                    <th scope="col" class="px-12 py-3">
+                    <th scope="col" class="px-6 py-3">
                         Id Siniiga
                     </th>
-                    <th scope="col" class="px-12 py-3">
+                    <th scope="col" class="px-6 py-3">
                         Fecha Nacimiento
                     </th>
-                    <th scope="col" class="px-12 py-3">
+                    <th scope="col" class="px-6 py-3">
                         Raza
                     </th>
-                    <th scope="col" class="px-12 py-3">
+                    <th scope="col" class="px-6 py-3">
                         Sexo
                     </th>
-                    <th scope="col" class="px-12 py-3">
+                    <th scope="col" class="px-6 py-3">
                         Acciones
                     </th>
                 </tr>
@@ -70,27 +70,27 @@
                                {{ $bovino->id_interno }}
                             </span>
                         </td>
-                        <td scope="row" class="px-6 py-4  text-gray-500 whitespace-nowrap">
+                        <td scope="row" class="px-2 py-4  text-gray-500 whitespace-nowrap">
                             {{ $bovino->nombre ?? 'Sin nombre' }}
                         </td>
-                        <td scope="row" class="px-6 py-4  text-gray-500 whitespace-nowrap">
+                        <td scope="row" class="px-2 py-4  text-gray-500 whitespace-nowrap">
                             {{ $bovino->propietario->nombre }}
                         </td>
-                        <td scope="row" class="px-6 py-4  text-gray-500 whitespace-nowrap">
+                        <td scope="row" class="px-2 py-4  text-gray-500 whitespace-nowrap">
                             {{ $bovino->id_siniiga ?? 'N/A' }}
                         </td>
-                        <td scope="row" class="px-6 py-4 text-gray-500 whitespace-nowrap">
+                        <td scope="row" class="px-2 py-4 text-gray-500 whitespace-nowrap">
                             {{ $bovino->fecha_nacimiento ? \Carbon\Carbon::parse($bovino->fecha_nacimiento)->format('d-m-Y') : 'N/A' }}
                         </td>
-                        <td scope="row" class="px-6 py-4  text-gray-500 whitespace-nowrap">
+                        <td scope="row" class="px-2 py-4  text-gray-500 whitespace-nowrap">
                             {{ $bovino->raza->nombre }}
                         </td>
-                        <td scope="row" class="px-6 py-4  text-gray-500 whitespace-nowrap">
+                        <td scope="row" class="px-2 py-4  text-gray-500 whitespace-nowrap">
                             {{ $bovino->sexo->nombre }}
                         </td>
 
 
-                        <td class="px-6 py-4 text-right flex justify-end gap-2">
+                        <td class="px-2 py-4 text-right flex justify-end gap-2">
                             {{-- Editar --}}
                             <livewire:editar-bovino id="{{ $bovino->id }}" :key="$bovino->id" />
                             {{-- Eliminar --}}

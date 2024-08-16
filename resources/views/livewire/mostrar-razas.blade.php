@@ -1,5 +1,13 @@
 <div>
     <x-alerta />
+    <div class='mb-2 flex p-1'>
+        {{-- BUSCAR POR TERMINO--}}
+        
+        <input placeholder="Buscar por termino"
+            class="w-full p-2 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-md text-sm"
+            id="search" type="text" wire:model.live.debounce.150ms="search">
+
+    </div>
 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500">

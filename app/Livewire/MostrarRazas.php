@@ -10,11 +10,25 @@ class MostrarRazas extends Component
 {
     use WithPagination;
 
+    public $search = '';
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
     public function render()
     {
 
-        $razas = Razas::orderBy('created_at', 'desc')->paginate(10);
-        
+        $query = Razas::orderBy('created_at', 'desc');
+
+        // Filtrar por término
+        if ($this->search) {
+            $query->where('nombre', 'LIKE', "%" . $this->search . "%");
+        }
+
+        $razas = $query->paginate(5);
+
         return view('livewire.mostrar-razas', compact('razas'));
     }
 }

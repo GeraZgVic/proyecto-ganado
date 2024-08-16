@@ -48,7 +48,7 @@ class AgregarGanadoBovino extends Component
             'estatus_genetico' => 'nullable',
             'fecha_nacimiento' => 'nullable',
             'fecha_destete' => 'nullable',
-            'id_siniiga' => 'nullable',
+            'id_siniiga' => 'required',
             'raza_id' => 'required',
             'sexo_id' => 'required',
             'propietario_id' =>  'required',

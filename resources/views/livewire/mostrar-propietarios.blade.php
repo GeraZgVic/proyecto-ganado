@@ -1,11 +1,27 @@
 <div>
     <x-alerta />
+
+    <div class='mb-2 flex p-1'>
+        {{-- BUSCAR POR TERMINO --}}
+
+        <input placeholder="Buscar por termino"
+            class="w-full p-2 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-md text-sm"
+            id="search" type="text" wire:model.live="search">
+
+    </div>
+
     <div class="relative overflow-x-auto">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 ">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                 <tr>
                     <th scope="col" class="px-6 py-3">
                         Nombre
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Apellido Paterno
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Apellido Materno
                     </th>
                     <th scope="col" class="px-6 py-3">
                         UPP
@@ -17,10 +33,16 @@
             </thead>
             <tbody>
                 @forelse ($propietarios as $propietario)
-                    <tr class="bg-white border-b ">
+                    <tr class="bg-white border-b" wire:key="propietario-{{ $propietario->id }}">
                         <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                            {{ $propietario->nombre }} {{ $propietario->apellido_paterno }}
+                            {{ $propietario->nombre }}
+
+                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            {{ $propietario->apellido_paterno }}
+                        </td>
+                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                             {{ $propietario->apellido_materno }}
+                        </td>
                         </td>
                         <td class="px-6 py-4">
                             {{ $propietario->upp ? $propietario->upp->clave_upp : 'Sin clave upp' }}
@@ -40,14 +62,15 @@
                                 </span>
                             </button>
                         </td>
-                    @empty
+                    </tr>
+
+                @empty
                     <tr>
                         <td colspan="2" class="px-6 py-4 text-right text-gray-400">
                             No se encontró resultados...
                         </td>
                     </tr>
                 @endforelse
-                </tr>
             </tbody>
         </table>
     </div>
@@ -88,14 +111,12 @@
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-    const alert = document.querySelector('.alert');
-    if (alert) {
-        alert.classList.add('alert-active');
-        setTimeout(() => {
-            alert.classList.remove('alert-active');
-        }, 5000); // Duración de la animación en milisegundos
-    }
-});
-
+        const alert = document.querySelector('.alert');
+        if (alert) {
+            alert.classList.add('alert-active');
+            setTimeout(() => {
+                alert.classList.remove('alert-active');
+            }, 5000); // Duración de la animación en milisegundos
+        }
+    });
 </script>
-
