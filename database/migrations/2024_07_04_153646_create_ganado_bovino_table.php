@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nombre', 100)->nullable();
             $table->string('imagen')->nullable();
             // $table->string('estatus_genetico', 150)->nullable();
-            $table->enum('estatus_genetico', ['Vacía', 'Preñada', 'Donadora', 'Receptora']);
+            $table->enum('estatus_genetico', [ 'Ninguno','Semental','Vacía', 'Preñada', 'Donadora', 'Receptora'])->default('Ninguno');
             $table->date('fecha_nacimiento')->nullable(); // para gestionar las etapas del bovino
 
             // NUEVOS CAMPOS (FALTA POR ANALIZAR)

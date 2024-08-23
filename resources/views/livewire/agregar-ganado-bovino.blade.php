@@ -46,6 +46,8 @@
                             wire:dirty.class="border-green-500 focus:border-green-500"
                             class="w-full border border-gray-100 rounded-md shadow-sm text-sm py-2 px-3 focus:outline-none focus:ring focus:ring-green-200">
                             <option value="">Selecciona una opción</option>
+                            <option value="Ninguno">Ninguno</option>
+                            <option value="Semental">Semental</option>
                             <option value="Vacía">Vacía</option>
                             <option value="Preñada">Preñada</option>
                             <option value="Donadora">Donadora</option>

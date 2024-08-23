@@ -30,7 +30,7 @@
     <!-- Mobile menu, show/hide based on menu state. -->
     <div x-show="open" class="sm:hidden" id="mobile-menu">
       <div class="space-y-1 px-2 pb-3 pt-2">
-        <a href="#" class="block text-center rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Iniciar Sesión</a>
+        <a href="{{route('login')}}" class="block text-center rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Iniciar Sesión</a>
       </div>
     </div>
   </nav>

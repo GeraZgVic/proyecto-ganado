@@ -31,7 +31,8 @@ class MostrarGanadoBovino extends Component
         if ($this->search) {
             $query->where(function ($q) {
                 $q->where('nombre', 'LIKE', "%" . $this->search . "%")
-                    ->orWhere('id_siniiga', 'LIKE', "%" . $this->search . "%");
+                    ->orWhere('id_siniiga', 'LIKE', "%" . $this->search . "%")
+                    ->orWhere('id_interno', 'LIKE', "%" . $this->search . "%");
             });
         }
 
