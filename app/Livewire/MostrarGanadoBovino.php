@@ -8,21 +8,43 @@ use App\Models\Propietario;
 use App\Models\Razas;
 use App\Models\Sexo;
 use Livewire\WithPagination;
+use Livewire\Attributes\Url;
 
 class MostrarGanadoBovino extends Component
 {
     use WithPagination;
 
+    #[Url(history: true)]
     public $search = '';
+
+    #[Url(history: true)]
     public $propietario_id = '';
+
+    #[Url(history: true)]
     public $raza_id = '';
+
+    #[Url(history: true)]
     public $sexo_id = '';
+
 
     public function updatingSearch()
     {
         $this->resetPage();
     }
 
+    public function updatingPropietarioId() {
+        $this->resetPage();
+    }
+
+    public function updatingRazaId() {
+        $this->resetPage();
+    }
+
+    public function updatingSexoId(){
+        $this->resetPage();
+    }
+
+    
     public function render()
     {
         $query = GanadoBovino::orderBy('id_interno', 'asc');
