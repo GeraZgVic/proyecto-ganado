@@ -56,6 +56,46 @@
 
                         <x-input-error :messages="$errors->get('estatus_genetico')" class="mt-2" />
                     </div>
+                    <div>
+                        <label for="metodo_prenez" class="block text-sm font-medium mb-2 text-start">Método de Preñez</label>
+
+                        <select wire:model="metodo_prenez" id="metodo_prenez"
+                            wire:dirty.class="border-green-500 focus:border-green-500"
+                            class="w-full border border-gray-100 rounded-md shadow-sm text-sm py-2 px-3 focus:outline-none focus:ring focus:ring-green-200">
+                            <option value="">Selecciona una opción</option>
+                            <option value="Monta directa">Monta directa</option>
+                            <option value="Transferencia de embriones">Transferencia de embriones</option>
+                            <option value="Inseminacion artificial">Inseminacion artificial</option>
+                        </select>
+
+                        <x-input-error :messages="$errors->get('metodo_prenez')" class="mt-2" />
+                    </div>
+                    <div>
+                        <label for="color_bovino" class="block text-sm font-medium mb-2 text-start">Color</label>
+
+                        <select wire:model="color_bovino" id="color_bovino"
+                            wire:dirty.class="border-green-500 focus:border-green-500"
+                            class="w-full border border-gray-100 rounded-md shadow-sm text-sm py-2 px-3 focus:outline-none focus:ring focus:ring-green-200">
+                            <option value="">Selecciona una opción</option>
+                            <option value="Hosco">Hosco</option>
+                            <option value="Rojo">Rojo</option>
+                            <option value="Bayo">Bayo</option>
+                            <option value="Gateado">Gateado</option>
+                            <option value="Pinto">Pinto</option>
+                            <option value="Cafe">Cafe</option>
+                            <option value="Negro">Negro</option>
+                            <option value="Gris">Gris</option>
+                            <option value="Blanco">Blanco</option>
+                            <option value="Sabino">Sabino</option>
+                            <option value="Cara Blanca">Cara Blanca</option>
+                            <option value="Cara Pinta">Cara Pinta</option>
+                            <option value="Bragao panza blanca">Bragao panza blanca</option>
+                            <option value="Panza Pinta">Panza Pinta</option>
+                            <option value="Ojillos">Ojillos</option>
+                        </select>
+
+                        <x-input-error :messages="$errors->get('color_bovino')" class="mt-2" />
+                    </div>
 
                     <div>
                         <label for="fecha_nacimiento" class="block text-sm font-medium mb-2 text-start">Fecha de

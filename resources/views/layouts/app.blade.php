@@ -16,7 +16,7 @@
 <body class="bg-gray-100 font-family-karla flex">
     <x-sidebar />
 
-    <div class="relative w-full flex flex-col h-screen overflow-y-hidden">
+    <div class="relative w-full flex flex-col h-screen overflow-y-hidden ">
         <!-- Desktop Header -->
         <header class="w-full items-center py-2 px-6 hidden sm:flex z-10 bg-slate-800">
             <div class="w-1/2"></div>

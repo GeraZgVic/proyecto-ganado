@@ -33,6 +33,9 @@ class EditarBovino extends Component
     public $peso_al_destete;
     public $peso_al_year;
 
+    public $metodo_prenez;
+    public $color_bovino;
+
     public $ganadoBovino;
 
 
@@ -59,6 +62,8 @@ class EditarBovino extends Component
         $this->peso_al_nacer = $this->ganadoBovino->peso_al_nacer;
         $this->peso_al_destete = $this->ganadoBovino->peso_al_destete;
         $this->peso_al_year = $this->ganadoBovino->peso_al_year;
+        $this->metodo_prenez = $this->ganadoBovino->metodo_prenez;
+        $this->color_bovino = $this->ganadoBovino->color_bovino;
     }
 
 
@@ -75,11 +80,14 @@ class EditarBovino extends Component
             'nombre' => 'required',
             // 'imagen' => 'nullable', //EN espera
             'id_registro' => 'nullable',
-            // 'estatus_genetico' => 'required|in:Vacía,Preñada,Donadora,Receptora',
-            'estatus_genetico' => 'nullable',
+            'estatus_genetico' => 'required|in:Ninguno,Semental,Vacía,Preñada,Donadora,Receptora',
+            // 'estatus_genetico' => 'nullable',
             'fecha_nacimiento' => 'nullable',
             'fecha_destete' => 'nullable',
-            'id_siniiga' => 'nullable',
+            'id_siniiga' => [
+                'nullable',
+                'unique:ganado_bovinos,id_siniiga,' . $this->ganadoBovino->id
+            ],
             'raza_id' => 'required',
             'sexo_id' => 'required',
             'propietario_id' =>  'required',
@@ -90,7 +98,17 @@ class EditarBovino extends Component
             'peso_al_nacer' => 'nullable',
             'peso_al_destete' => 'nullable',
             'peso_al_year' => 'nullable',
+            'metodo_prenez' => 'nullable|in:Monta directa,Transferencia de embriones,Inseminacion artificial,',
+            'color_bovino' => 'required|in:Hosco,Rojo,Bayo,Gateado,Pinto,Cafe,Negro,
+            Gris,Blanco,Sabino,Cara Blanca,Cara Pinta,Bragao panza blanca,Panza Pinta,Ojillos',
         ]);
+
+        // Convertir los valores vacíos a NULL -> Para madre y padre id
+        foreach ($validated as $key => $value) {
+            if ($value === '') {
+                $validated[$key] = null;
+            }
+        }
 
         $this->ganadoBovino->update($validated);
 

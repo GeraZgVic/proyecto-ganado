@@ -16,7 +16,25 @@ return new class extends Migration
             $table->string('nombre', 100)->nullable();
             $table->string('imagen')->nullable();
             // $table->string('estatus_genetico', 150)->nullable();
-            $table->enum('estatus_genetico', [ 'Ninguno','Semental','Vacía', 'Preñada', 'Donadora', 'Receptora'])->default('Ninguno');
+            $table->enum('estatus_genetico', ['Ninguno', 'Semental', 'Vacía', 'Preñada', 'Donadora', 'Receptora'])->default('Ninguno');
+            $table->enum('metodo_prenez', ['Monta directa', 'Transferencia de embriones', 'Inseminacion artificial'])->nullable();
+            $table->enum('color_bovino', [
+                'Hosco',
+                'Rojo',
+                'Bayo',
+                'Gateado',
+                'Pinto',
+                'Cafe',
+                'Negro',
+                'Gris',
+                'Blanco',
+                'Sabino',
+                'Cara Blanca',
+                'Cara Pinta',
+                'Bragao panza blanca',
+                'Panza Pinta',
+                'Ojillos'
+            ]);
             $table->date('fecha_nacimiento')->nullable(); // para gestionar las etapas del bovino
 
             // NUEVOS CAMPOS (FALTA POR ANALIZAR)

@@ -29,7 +29,9 @@ class GanadoBovino extends Model
         // NUEVOS CAMPOS (FALTA POR ANALIZAR)
         'peso_al_nacer',
         'peso_al_destete',
-        'peso_al_year'
+        'peso_al_year',
+        'metodo_prenez',
+        'color_bovino'
     ];
 
 

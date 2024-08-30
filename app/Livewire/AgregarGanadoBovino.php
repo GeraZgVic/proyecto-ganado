@@ -35,6 +35,8 @@ class AgregarGanadoBovino extends Component
     public $peso_al_destete;
     public $peso_al_year;
 
+    public $metodo_prenez;
+    public $color_bovino;
     public $selectedOption = 0;
 
     public function save()
@@ -44,11 +46,14 @@ class AgregarGanadoBovino extends Component
             'nombre' => 'required',
             // 'imagen' => 'nullable', //EN espera
             'id_registro' => 'nullable',
-            // 'estatus_genetico' => 'required|in:Vacía,Preñada,Donadora,Receptora',
-            'estatus_genetico' => 'nullable',
+            'estatus_genetico' => 'required|in:Ninguno,Semental,Vacía,Preñada,Donadora,Receptora',
+            // 'estatus_genetico' => 'nullable',
             'fecha_nacimiento' => 'nullable',
             'fecha_destete' => 'nullable',
-            'id_siniiga' => 'nullable',
+            'id_siniiga' => [
+                'nullable',
+                'unique:ganado_bovinos,id_siniiga'
+            ],
             'raza_id' => 'required',
             'sexo_id' => 'required',
             'propietario_id' =>  'required',
@@ -59,7 +64,10 @@ class AgregarGanadoBovino extends Component
             // NUEVOS CAMPOS
             'peso_al_nacer' => 'nullable',
             'peso_al_destete' => 'nullable',
-            'peso_al_year' => 'nullable'
+            'peso_al_year' => 'nullable',
+            'metodo_prenez' => 'nullable|in:Monta directa,Transferencia de embriones,Inseminacion artificial,',
+            'color_bovino' => 'required|in:Hosco,Rojo,Bayo,Gateado,Pinto,Cafe,Negro,
+            Gris,Blanco,Sabino,Cara Blanca,Cara Pinta,Bragao panza blanca,Panza Pinta,Ojillos',
         ]);
 
         // Convertir los valores vacíos a NULL -> Para madre y padre id

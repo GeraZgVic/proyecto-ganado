@@ -1,5 +1,12 @@
     <div x-data="{ open: true }" class="flex">
-        <aside x-show="open" class="relative bg-sidebar h-screen w-[15rem] hidden sm:block shadow-xl">
+        <aside x-show="open" x-transition:enter="transition ease-out duration-300"
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 transform -translate-x-full"
+            x-transition:enter-end="opacity-100 transform translate-x-0"
+            x-transition:leave="transition ease-in duration-300"
+            x-transition:leave-start="opacity-100 transform translate-x-0"
+            x-transition:leave-end="opacity-0 transform -translate-x-full"
+            class="relative bg-sidebar h-screen w-[15rem] hidden sm:block ">
 
             <div class="flex justify-center py-3">
                 <x-logo />
@@ -26,7 +33,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
                         </svg> --}}
-                        <img src="{{asset('img/vaca.png')}}" class="size-6" alt="icono-bovino">
+                        <img src="{{ asset('img/vaca.png') }}" class="size-6" alt="icono-bovino">
                         <span class="ml-2 font-semibold">Ganado</span>
                         <span class="ml-auto" aria-hidden="true">
                             <!-- active class 'rotate-180' -->
@@ -41,8 +48,7 @@
                     <div role="menu" x-show="open" class="mt-2 space-y-2 px-7" aria-label="Dashboards">
                         <a href="{{ route('bovino.index') }}" role="menuitem"
                             class="font-Montserrat block p-2 text-sm text-gray-100 transition-colors duration-200 rounded-md hover:text-sky-200">
-                            <span
-                                class="{{ Route::currentRouteName() == 'bovino.index' ? 'text-sky-200' : '' }}">Ver
+                            <span class="{{ Route::currentRouteName() == 'bovino.index' ? 'text-sky-200' : '' }}">Ver
                                 Ganado Bovino</span>
                         </a>
                         {{-- <a href="{{route('upp.index')}}" role="menuitem"
@@ -82,8 +88,7 @@
                         </a>
                         <a href="{{ route('upp.index') }}" role="menuitem"
                             class="font-Montserrat block p-2 text-sm text-gray-100 transition-colors duration-200 rounded-md hover:text-sky-200">
-                            <span
-                                class="{{ Route::currentRouteName() == 'upp.index' ? 'text-sky-200' : '' }}">Agregar
+                            <span class="{{ Route::currentRouteName() == 'upp.index' ? 'text-sky-200' : '' }}">Agregar
                                 UPP</span>
                         </a>
                     </div>
@@ -119,17 +124,23 @@
 
         <button x-on:click="open = ! open" class="absolute z-20  hidden lg:inline-block mt-[1rem]">
             {{-- ARROW LEFT --}}
-            <span x-show="open" class="relative left-[15rem] block bg-slate-800 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-600 rounded-full p-1.5">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 text-white">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5" />
-                  </svg>
-                            
+            <span x-show="open"
+                class="relative left-[15rem] block bg-slate-800 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-600 rounded-full p-1.5">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="size-5 text-white">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5" />
+                </svg>
+
             </span>
             {{-- ARROW RIGHT --}}
-            <span x-show="!open" class="block bg-slate-800 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-600 rounded-full p-1.5">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 text-white">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
-                  </svg>                              
+            <span x-show="!open"
+                class="block bg-slate-800 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-600 rounded-full p-1.5">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="size-5 text-white">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                </svg>
             </span>
         </button>
     </div>

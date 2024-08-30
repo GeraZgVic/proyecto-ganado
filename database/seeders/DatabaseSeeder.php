@@ -38,6 +38,7 @@ class DatabaseSeeder extends Seeder
             ['upp_id' => '1', 'nombre' => 'Keyla Sarai', 'apellido_materno' => 'Hernández', 'apellido_paterno' => 'García', 'created_at' => now(), 'updated_at' => now()],
             ['upp_id' => '2', 'nombre' => 'Ada', 'apellido_materno' => 'Morales', 'apellido_paterno' => 'Hernández', 'created_at' => now(), 'updated_at' => now()],
             ['upp_id' => '2', 'nombre' => 'Isaias', 'apellido_materno' => 'Gordillo', 'apellido_paterno' => 'García', 'created_at' => now(), 'updated_at' => now()],
+            ['upp_id' => '2', 'nombre' => 'Adyflor', 'apellido_materno' => 'Gordillo', 'apellido_paterno' => 'García', 'created_at' => now(), 'updated_at' => now()],
         ];
         DB::table('propietarios')->insert($propietarios);
 
@@ -50,6 +51,6 @@ class DatabaseSeeder extends Seeder
 
         $this->call(RazasSeederTable::class);
         $this->call(SexoSeederTable::class);
-        $this->call(bovinos::class);
+        // $this->call(bovinos::class);
     }
 }
